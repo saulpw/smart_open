@@ -243,6 +243,7 @@ class SeekableBufferedInputBase(BufferedInputBase):
 
         self._seekable = True
 
+        self.content_type = self.response.headers.get("Content-Type", None)
         self.content_length = int(self.response.headers.get("Content-Length", -1))
         if self.content_length < 0:
             self._seekable = False
