@@ -31,7 +31,9 @@ def parse_uri(uri_as_string):
 
 def open_uri(uri_as_string, mode, transport_params):
     parsed_uri = parse_uri(uri_as_string)
-    fobj = io.open(parsed_uri['uri_path'], mode)
+    fn = parsed_uri['uri_path']
+    fobj = io.open(fn, mode)
+    fobj.content_length = os.stat(fn).st_size
     return fobj
 
 
